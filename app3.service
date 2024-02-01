@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve app 3
+After=network.target
+
+[Service]
+User=app3
+Group=app-users
+WorkingDirectory=/opt/app/uf4-examen/
+Environment="INSTANCE=app3"
+ExecStart=/usr/local/bin/gunicorn -w 4 -b 0.0.0.0:5003 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
